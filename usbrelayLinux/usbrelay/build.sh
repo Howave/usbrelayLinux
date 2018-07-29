@@ -1,0 +1,1 @@
+gcc -I/usr/local/include/libusb-1.0 demo.c hidcomm.c usb2io.c usbrelay.c -L/usr/local/lib -lusb-1.0
