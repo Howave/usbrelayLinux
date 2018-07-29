@@ -1,0 +1,32 @@
+请注意：
+1、目前的接口(usbrelay.c、usb2io.c、hidcomm.c)仅支持一个USB继电器，如果需要支持多个，请自行参考程序修改。
+2、UI051和USB继电器使用同样的VID、PID，由于受到上述1的限制，UI051和USB继电器不能同时插到一台电脑上。
+   如果您已经修改接口程序能支持多个，可以不用考虑该条限制。
+
+对Linux开发，我们不提供支持!
+
+请注意，现在的例程是32位的！！！ 如果要在64位linux下开发，可能需要做一下改动，我们暂不提供支持，请自行研究！！
+
+USB继电器的Linux接口代码在usbrelay目录下，demo是例程, usbrelay.c、usb2io.c、hidcomm.c是接口代码。
+
+以下将以ubuntu为例，说明如何在linux开发：
+1、安装libusb
+  1.a 进入usbrelayLinux目录， ./configure
+  1.b make
+  1.c make install
+  1.d 到这，已经完成安装libusb
+      libusb.h 在/usr/local/include/libusb-1.0
+      libusb.so在/usr/local/lib
+
+2、编译demo
+  2.a 进入usbrelay目录
+  2.b ./build.sh  生成a.out
+
+3、测试：
+  3.a 将USB继电器插入电脑
+  3.b 如果您用的是虚拟机，请将该设备映射入虚拟机中
+  3.c 在/dev/bus/usb/ 中找到新增加的USB继电器，比如 /dev/bus/usb/001/003
+      修改权限：sudo chmod 666 /dev/bus/usb/001/003
+  3.d 在usbrelay目录下，运行 ./a.out
+
+您可以参考demo.c开发自己的程序。
